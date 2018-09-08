@@ -1,0 +1,51 @@
+// Base style bem basicão.. usando a fonte hospedada..
+
+@font-face {
+    font-family: "proxima nova";
+    src: url("https://assets0.enjoei.com.br/assets/20170302/ui/proxima-nova/regular-dc9000c11892b5120cd0ccd08cb80c5bf3ec0f971d0c213372a1e7632ec82914.woff") format("woff");
+}
+
+@font-face {
+    font-family: "proxima nova bold";
+    src: url("https://assets2.enjoei.com.br/assets/20170302/ui/proxima-nova/semibold-d6cd774406a98e5e404adc8cdd0b05b4ce9e0c04928dda1f43d9ddb0a4e69057.woff") format("woff");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+span,
+p {
+    color: #8f8d8a;
+}
+
+label,
+span,
+p,
+a,
+button {
+    color: #8f8d8a;
+    font-family: "proxima nova", "Arial", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "proxima nova bold", "Arial", sans-serif;
+}
+
+
+.color-discount {
+    color: $red;
+}
+
+.item-bold {
+    font-weight: 700;
+    color: $brown;
+}

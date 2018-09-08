@@ -1,0 +1,131 @@
+@import "reset";
+@import "colors";
+@import "base-style";
+@import "modal";
+@import "button";
+
+.page-checkout {
+    background-color: $white;
+    padding: 0;
+    margin: 0 auto;
+
+    &-header {
+        border-bottom: 2px solid $gray;
+        
+        .pc-header-logo {
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            padding: 15px 0 11px;
+
+            svg {
+                width: 30px;
+            }
+        }
+    }
+
+    main {
+        padding: 0 10px;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    &-product-image {
+        text-align: center; 
+        padding: 10px 0;
+        
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin: 18px 0;
+        }
+    }
+
+    &-content {
+        border-bottom: 1px solid $light-gray;
+
+        h2 {
+            color: $brown;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        &-list {
+            list-style: none;
+            margin: 0 0 17px;
+            padding: 0;
+
+            li {
+                display: flex;
+                line-height: 44px;
+                align-items: center;
+                font-size: 15px;
+                
+                input[type="radio"] {
+                    width: 20px;
+                    height: 20px;
+                    position: relative;
+                    -webkit-appearance: none;
+                    margin-right: 12px;
+                    top: 4px;
+                    outline: none;
+
+                    &::before {
+                        width: 18px;
+                        height: 18px;
+                        position: absolute;
+                        content: "";
+                        border-radius: 50%;
+                        border: 1px solid $light-gray-2;
+                        top: 0;
+                        left: -2px;
+                    }
+
+                    &:checked {
+                        
+                        &::after {
+                            width: 10px;
+                            height: 10px;
+                            position: absolute;
+                            top: 5px;
+                            left: 3px;
+                            content: "";
+                            background: $red;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                label {
+                    flex: 1;
+                }
+                span {
+                    width: 100px;
+                    text-align: right;
+                }
+                p {
+                    flex: 1;
+                }
+            }
+        }
+        
+    }
+
+    &-footer {
+        text-align: center;
+        display: flex;
+        padding: 8px 0;
+
+        button {
+            flex: 1;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+
+            &:last-child {
+                margin-left: 10px;
+            }
+        }
+    }
+}

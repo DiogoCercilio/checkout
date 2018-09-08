@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- 
+      Apenas como observação.. aqui poderiam ser inseridas várias melhorias pensando em SEO e integração com ferramentas do Google,
+      como por exemplo dados estruturados e Server side rendering.. porém não o fiz devido ao pouco tempo disponível 
+    -->
+    <meta charset="UTF-8">
+    <title>checkout | enjoei</title>
+    <link rel="stylesheet" href="/dist/stylesheets/app.bundle.css">
+    <link rel="preload" as="font" href="https://assets0.enjoei.com.br/assets/20170302/ui/proxima-nova/regular-dc9000c11892b5120cd0ccd08cb80c5bf3ec0f971d0c213372a1e7632ec82914.woff" crossorigin="">
+</head>
+<body class="page-checkout">
+  <header class="page-checkout-header">
+    <a href="#" class="pc-header-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158.83 158.83">
+        <g data-name="Layer 1">
+          <path fill="#F05B78" d="M146.11,121.61a1.63,1.63,0,0,0-.74-1L117.73,103.9a1.47,1.47,0,0,0-2,.39,43.72,43.72,0,0,1-72.88,0,1.47,1.47,0,0,0-2-.47c-.86.55-27.63,16.54-27.63,16.54a1.61,1.61,0,0,0-.52,2.26,79.39,79.39,0,0,0,133.1.22,1.59,1.59,0,0,0,.22-1.24"></path>
+          <path fill="#4F2D32" d="M79.41,37.72A41.75,41.75,0,0,1,116.52,60.4H42.31a41.75,41.75,0,0,1,37.1-22.68m78.93,50.54a81.74,81.74,0,0,0,.49-8.85A79.42,79.42,0,0,0,23.26,23.26a79.45,79.45,0,0,0-22.77,65,1.59,1.59,0,0,0,1.63,1.45H156.76a1.58,1.58,0,0,0,1.58-1.43"></path>
+        </g>
+      </svg>
+    </a>
+  </header>
+  
+  <main id="app">
+    <section class="page-checkout-product-image">
+      <img :src="product.image" alt="Blusinha da Moda">
+    </section>
+
+    <section class="page-checkout-content">
+      <template v-if="checkout.availableCoupons">
+        
+        <h2>cupons</h2>
+        <ul class="page-checkout-content-list">
+          <li>
+            <p>
+              <input type="radio" name="cupom" id="cupom_empty" value="0" @click="updateCoupon()" checked>
+              <label for="cupom_empty">não usar cupom</label>
+            </p>
+          </li>
+
+          <li v-for="cupom in checkout.availableCoupons">
+            <p>
+              <input type="radio" name="cupom" :id="'cupom_'+cupom.id" @value="cupom.id" @click="updateCoupon(cupom)">
+              <label :for="'cupom_'+cupom.id">{{cupom.title}}</label>
+            </p>
+            <span v-show="cupom.discount" class="color-discount">
+              - {{cupom.discount | toCurrency}}
+            </span>
+          </li>
+        </ul>
+      </template>
+
+      <h2>resumo</h2>
+      <ul class="page-checkout-content-list">
+        <li>
+          <p>valor original</p>
+          <span>{{product.price | toCurrency}}</span>
+        </li>
+      
+        <li v-show="couponChoosed.discount">
+          <p>cupom</p>
+          <span class="color-discount">- {{couponChoosed.discount | toCurrency}}</span>
+        </li>
+
+        <li>
+          <p>frete</p>
+          <span>{{checkout.shippingPrice | toCurrency}}</span>
+        </li>
+
+        <li>
+          <p>total</p>
+          <span class="item-bold">{{checkout.totalPrice | toCurrency}}</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="page-checkout-footer">
+      <button @click="postOperation('cancel')" class="btn btn-secondary">
+        cancelar
+      </button>
+      
+      <button @click="postOperation('confirm')" class="btn btn-primary">
+        confirmar
+      </button>
+    </footer>
+
+    <div class="modal-overlay" :class="{ active: modal.active }" @click="closeModal()">
+      <div class="modal">
+        <i :class="modal.icon"></i>
+        <h2 class="modal-title">{{modal.title}}</h2>
+        <p class="modal-content">{{modal.content}}</p>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="/dist/javascripts/app.bundle.js"></script>
+</body>
+</html>

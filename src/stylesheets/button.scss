@@ -1,0 +1,23 @@
+.btn {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    line-height: 45px;
+    font-size: 16px;
+    border: 1px solid;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &-primary {
+        color: $white;
+        background: $red;
+        border-color: $red $red $dark-red;
+    }
+
+    &-secondary {
+        background-color: $white;
+        color: $red;
+        border-color: $gray $gray $light-gray;
+    }
+}
